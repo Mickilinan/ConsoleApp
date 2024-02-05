@@ -1,18 +1,16 @@
-﻿
-
-using DbAssignment.Contexts;
-using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
+﻿using DbAssignment.Contexts;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace DbAssignment.Repositories;
 
-public class BaseRepo<TEntity> where TEntity : class
+public class BaseRepo<TContext, TEntity> where TContext : DbContext where TEntity : class
 {
 
 
-    private readonly DataContext _context;
+    private readonly TContext _context;
 
-    public BaseRepo(DataContext context)
+    public BaseRepo(TContext context)
     {
         _context = context;
     }

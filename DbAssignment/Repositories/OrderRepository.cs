@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace DbAssignment.Repositories;
 
-public class OrderRepository : BaseRepo<OrderEntity>
+public class OrderRepository : BaseRepo<DataContext,OrderEntity>
 {
 
     private readonly DataContext _context;  

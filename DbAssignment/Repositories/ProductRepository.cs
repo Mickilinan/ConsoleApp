@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace DbAssignment.Repositories;
 
-public class ProductRepository : BaseRepo<ProductEntity>
+public class ProductRepository : BaseRepo<DataContext,ProductEntity>
 {
 
     private readonly DataContext _context;  

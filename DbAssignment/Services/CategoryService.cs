@@ -1,6 +1,4 @@
-﻿
-
-using DbAssignment.Entities;
+﻿using DbAssignment.Entities;
 using DbAssignment.Repositories;
 
 namespace DbAssignment.Services;

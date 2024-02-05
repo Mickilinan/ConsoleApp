@@ -5,7 +5,7 @@ using DbAssignment.Entities;
 
 namespace DbAssignment.Repositories;
 
-public class UserRepository : BaseRepo<UserEntity>
+public class UserRepository : BaseRepo<DataContext,UserEntity>
 {
 
    
