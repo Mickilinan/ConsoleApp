@@ -28,9 +28,7 @@ public partial class DataContext2 : DbContext
     public virtual DbSet<UserEntity> Users { get; set; }
     public virtual DbSet<ProductEntity> Products { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-
-        => optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\WIN23\\Datalagring\\ConsoleApp\\DbAssignment\\Data\\ProductCatalogDb.mdf;Integrated Security=True;Connect Timeout=30");
+ 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

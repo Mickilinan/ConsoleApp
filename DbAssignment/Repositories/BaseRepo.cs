@@ -49,11 +49,17 @@ public class BaseRepo<TContext, TEntity> where TContext : DbContext where TEntit
         return entityToUpdate!;
     }
 
-    public virtual void  Delete(Expression<Func<TEntity, bool>> expression)
+    public virtual bool Delete(Expression<Func<TEntity, bool>> expression)
     {
         var entity = _context.Set<TEntity>().FirstOrDefault(expression);
+        if (entity == null)
+        {
+            return false;
+        }
         _context.Remove(entity!);
         _context.SaveChanges();
+
+        return true;
         
         
     }

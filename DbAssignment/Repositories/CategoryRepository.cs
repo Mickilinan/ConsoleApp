@@ -1,6 +1,4 @@
-﻿
-
-using DbAssignment.Contexts;
+﻿using DbAssignment.Contexts;
 using DbAssignment.Entities;
 
 namespace DbAssignment.Repositories;
