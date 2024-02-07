@@ -159,7 +159,7 @@ public class OrderItemRepository_Tests
 
 
     [Fact]
-    public void Delete_ShouldDeleteOneCategory()
+    public void Delete_ShouldDeleteOneOrderItem()
     {
         // Arrange
         var orderItemRepository = new OrderItemRepository(_context);
