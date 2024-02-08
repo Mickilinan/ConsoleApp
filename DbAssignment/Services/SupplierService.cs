@@ -16,8 +16,15 @@ public class SupplierService
     public SupplierEntity CreateSupplier(string supplierName, string contactInfo)
     {
 
-        var supplierEntity = new SupplierEntity
+        // Check if a supplier with the same name already exists
+        var existingSupplier = _supplierRepository.Get(x => x.SupplierName == supplierName);
+        if (existingSupplier != null)
+        {
+            // If a supplier with the same name already exists, return null
+            return null;
+        }
 
+        var supplierEntity = new SupplierEntity
         {
             SupplierName = supplierName,
             ContactInfo = contactInfo

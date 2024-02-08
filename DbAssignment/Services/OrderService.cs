@@ -42,8 +42,22 @@ public class OrderService(OrderRepository orderRepository, UserService userServi
 
     public OrderEntity UpdateOrder(OrderEntity orderEntity)
     {
-        var updatedOrder = _orderRepository.Update(x => x.Id == orderEntity.Id, orderEntity);
-        return updatedOrder;
+        // Check if an order with the given ID exists
+        var existingOrder = _orderRepository.Get(x => x.Id == orderEntity.Id);
+        if (existingOrder == null)
+        {
+            // If an order with the given ID does not exist, return null
+            return null;
+        }
+
+        // Update the existing order with the new details
+        existingOrder.Status = orderEntity.Status;
+        existingOrder.CreatedAt = orderEntity.CreatedAt;
+        existingOrder.UpdatedAt = orderEntity.UpdatedAt;
+        existingOrder.UserId = orderEntity.UserId;
+
+        _orderRepository.Update(existingOrder);
+        return existingOrder;
     }
 
 

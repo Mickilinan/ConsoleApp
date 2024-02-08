@@ -10,14 +10,22 @@ public class UserService(UserRepository userRepository)
 
     public UserEntity CreateUser(string firstName, string lastName, string email)
     {
-        var userEntity = _userRepository.Get(x => x.FirstName == firstName && x.LastName == lastName && x.Email == email);
-        userEntity ??= _userRepository.Create(new UserEntity
-        { 
-            FirstName = firstName, 
-            LastName = lastName, 
-            Email = email 
-        });
+        // Check if a user with the same name already exists
+        var existingUser = _userRepository.Get(x => x.FirstName == firstName && x.LastName == lastName && x.Email == email);
+        if (existingUser != null)
+        {
+            // If a user with the same name already exists, return null
+            return null;
+        }
 
+        var userEntity = new UserEntity
+        {
+            FirstName = firstName,
+            LastName = lastName,
+            Email = email
+        };
+
+        userEntity = _userRepository.Create(userEntity);
         return userEntity;
 
     }

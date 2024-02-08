@@ -43,10 +43,21 @@ public class BaseRepo<TContext, TEntity> where TContext : DbContext where TEntit
 
     public virtual TEntity Update(Expression<Func<TEntity, bool>> expression, TEntity entity)
     {
-        var entityToUpdate = _context.Set<TEntity>().FirstOrDefault(expression);
-        _context.Entry(entityToUpdate!).CurrentValues.SetValues(entity);
-        _context.SaveChanges();
-        return entityToUpdate!;
+        // Check if entity is null
+        if (entity == null)
+        {
+            // If entity is null, return null
+            return null;
+        }
+
+        // If entity is not null, update the entity
+        var existingEntity = _context.Set<TEntity>().SingleOrDefault(expression);
+        if (existingEntity != null)
+        {
+            _context.Entry(existingEntity).CurrentValues.SetValues(entity);
+            _context.SaveChanges();
+        }
+        return existingEntity;
     }
 
     public virtual bool Delete(Expression<Func<TEntity, bool>> expression)

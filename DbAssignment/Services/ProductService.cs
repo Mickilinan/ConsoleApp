@@ -12,10 +12,17 @@ public class ProductService(ProductRepository productRepository, CategoryService
     public ProductEntity CreateProduct(string productName, decimal price, string description,string categoryName)
     {
 
+        // Check if a product with the same name already exists
+        var existingProduct = _productRepository.Get(x => x.ProductName == productName);
+        if (existingProduct != null)
+        {
+            // If a product with the same name already exists, return null
+            return null;
+        }
+
         var categoryEntity = _categoryService.CreateCategory(categoryName);
 
         var productEntity = new ProductEntity
-
         {
             ProductName = productName,
             Price = price,
@@ -23,9 +30,9 @@ public class ProductService(ProductRepository productRepository, CategoryService
             CategoryId = categoryEntity.Id
         };
 
-       productEntity = _productRepository.Create(productEntity);
-       return productEntity;
-       
+        productEntity = _productRepository.Create(productEntity);
+        return productEntity;
+
     }
 
     public ProductEntity GetProductById(int id)
@@ -47,9 +54,16 @@ public class ProductService(ProductRepository productRepository, CategoryService
     }
 
 
-    public void DeleteProduct(int Id)
+    public bool DeleteProduct(int Id)
     {
+        var product = _productRepository.Get(x => x.Id == Id);
+        if (product == null)
+        {
+            return false;
+        }
+
         _productRepository.Delete(x => x.Id == Id);
+        return true;
 
     }
 }
