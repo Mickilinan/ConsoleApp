@@ -13,6 +13,11 @@ public class OrderService(OrderRepository orderRepository, UserService userServi
     {
         var userEntity = _userService.CreateUser(firstName,lastName, email);
        
+        if (userEntity == null)
+        {
+            return null;
+        }   
+
         var orderEntity = new OrderEntity
         {
             Status = status,
@@ -56,7 +61,7 @@ public class OrderService(OrderRepository orderRepository, UserService userServi
         existingOrder.UpdatedAt = orderEntity.UpdatedAt;
         existingOrder.UserId = orderEntity.UserId;
 
-        _orderRepository.Update(existingOrder);
+        _orderRepository.Update(x => x.Id == existingOrder.Id, existingOrder);
         return existingOrder;
     }
 

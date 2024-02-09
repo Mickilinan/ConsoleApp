@@ -51,6 +51,13 @@ public class OrderService_Tests
         var userService = new UserService(userRepository);
         var orderService = new OrderService(orderRepository, userService);
 
+        string status = "Test status";
+        DateTime createdAt = DateTime.Now;
+        DateTime updatedAt = DateTime.Now;
+        string firstName = "Test user";
+        string lastName = "Test user";
+        string email = "Test email";
+
         orderService.CreateOrder(status, createdAt, updatedAt, firstName, lastName, email);
 
         // Act
@@ -147,7 +154,7 @@ public class OrderService_Tests
         var result = orderService.UpdateOrder(createdOrder);
 
         // Assert
-        Assert.Equal("Updated Product Name", result.Status);
+        Assert.Equal("Updated order status", result.Status);
     }
 
     [Fact]
@@ -159,7 +166,28 @@ public class OrderService_Tests
         var userService = new UserService(userRepository);
         var orderService = new OrderService(orderRepository, userService);
 
-        var nonExistentOrder = new OrderEntity { status, createdAt, updatedAt, firstName, lastName, email }; // Use an ID that does not exist
+        string status = "Test status";
+        DateTime createdAt = DateTime.Now;
+        DateTime updatedAt = DateTime.Now;
+        string firstName = "Test user";
+        string lastName = "Test user";
+        string email = "Test email";
+
+
+
+        var nonExistentOrder = new OrderEntity
+        {
+            Status = status,
+            CreatedAt = createdAt,
+            UpdatedAt = updatedAt,
+            User = new UserEntity
+
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                Email = email
+            }
+        }; 
 
         // Act
         var result = orderService.UpdateOrder(nonExistentOrder);
@@ -187,9 +215,10 @@ public class OrderService_Tests
         var createdOrder = orderService.CreateOrder(status, createdAt, updatedAt, firstName, lastName, email);
 
         // Act
-        var result = orderService.DeleteOrder(createdOrder.Id);
+        orderService.DeleteOrder(createdOrder.Id);
 
         // Assert
-        Assert.True(result);
+        var deletedOrder = orderService.GetOrderById(createdOrder.Id);
+        Assert.Null(deletedOrder);
     }
 }

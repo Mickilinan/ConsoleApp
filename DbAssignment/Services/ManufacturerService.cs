@@ -13,6 +13,10 @@ public class ManufacturerService(ManufacturerRepository manufacturerRepository, 
     {
 
         var productEntity = _productService.CreateProduct(productName, price, description, categoryName);
+        if (productEntity == null)
+        {
+            return null;
+        }
 
         var manufacturerEntity = new ManufacturerEntity
 

@@ -15,7 +15,7 @@ public class CategoryService(CategoryRepository categoryRepository)
         if (existingCategory != null)
         {
             // If a category with the same name already exists, return null
-            return null;
+            return existingCategory;
         }
 
         // If no category with the same name exists, create a new category

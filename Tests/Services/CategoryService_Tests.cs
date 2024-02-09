@@ -30,15 +30,15 @@ public class CategoryService_Tests
         Assert.Equal(1, result.Id);
     }
     [Fact]
-    public void CreateCategory_ShouldReturnNull_WhenCategoryNameAlreadyExists()
+    public void CreateCategory_ShouldReturnExistingCategory_WhenCategoryNameAlreadyExists()
     {
         // Arrange
         var categoryRepository = new CategoryRepository(_context);
         var categoryService = new CategoryService(categoryRepository);
 
         // Create a category
-        var existingCategoryName = "Existing category" ;
-        categoryService.CreateCategory(existingCategoryName);
+        var existingCategoryName = "Existing category";
+        var existingCategory = categoryService.CreateCategory(existingCategoryName);
 
         // Act
         // Try to create another category with the same name
@@ -46,8 +46,11 @@ public class CategoryService_Tests
         var result = categoryService.CreateCategory(duplicateCategoryName);
 
         // Assert
-        Assert.Null(result);
+        Assert.NotNull(result);
+        Assert.Equal(existingCategory.Id, result.Id);
+        Assert.Equal(existingCategory.CategoryName, result.CategoryName);
     }
+
 
     [Fact]
     public void GetCategoryByCategoryName_ShouldReturnCategory_WhenCategoryExists()
