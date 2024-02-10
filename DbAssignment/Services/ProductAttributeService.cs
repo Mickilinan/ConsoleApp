@@ -22,8 +22,12 @@ public class ProductAttributeService
 
         var productEntity = _productService.CreateProduct(productName, price, description, categoryName);
 
-        var productAttributeEntity = new ProductAttributeEntity
+        if (productEntity == null)
+        {
+            return null;
+        }
 
+        var productAttributeEntity = new ProductAttributeEntity
         {
             AttributeName = attributeName,
             ProductId = productEntity.Id

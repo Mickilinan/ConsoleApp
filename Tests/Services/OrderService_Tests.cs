@@ -43,7 +43,7 @@ public class OrderService_Tests
     }
 
     [Fact]
-    public void CreateOrder_ShouldReturnNull_WhenOrderIdAlreadyExists()
+    public void UserCanHaveMultipleOrders()
     {
         // Arrange
         var orderRepository = new OrderRepository(_context);
@@ -51,21 +51,25 @@ public class OrderService_Tests
         var userService = new UserService(userRepository);
         var orderService = new OrderService(orderRepository, userService);
 
-        string status = "Test status";
+        string status1 = "Test status 1";
+        string status2 = "Test status 2";
         DateTime createdAt = DateTime.Now;
         DateTime updatedAt = DateTime.Now;
         string firstName = "Test user";
         string lastName = "Test user";
         string email = "Test email";
 
-        orderService.CreateOrder(status, createdAt, updatedAt, firstName, lastName, email);
-
         // Act
-        // Try to create another product with the same name
-        var result = orderService.CreateOrder(status, createdAt, updatedAt, firstName, lastName, email);
+        var order1 = orderService.CreateOrder(status1, createdAt, updatedAt, firstName, lastName, email);
+        var order2 = orderService.CreateOrder(status2, createdAt, updatedAt, firstName, lastName, email);
 
         // Assert
-        Assert.Null(result);
+        Assert.NotNull(order1);
+        Assert.NotNull(order2);
+        Assert.Equal(firstName, order1.User.FirstName);
+        Assert.Equal(firstName, order2.User.FirstName);
+        Assert.Equal(status1, order1.Status);
+        Assert.Equal(status2, order2.Status);
     }
 
     [Fact]
@@ -105,13 +109,13 @@ public class OrderService_Tests
         string lastName = "Test user";
         string email = "Test email";
 
-        var createdProduct = orderService.CreateOrder(status, createdAt, updatedAt, firstName, lastName, email);
+        var createdOrder = orderService.CreateOrder(status, createdAt, updatedAt, firstName, lastName, email);
 
         // Act
-        var result = orderService.GetOrderById(createdProduct.Id);
+        var result = orderService.GetOrderById(createdOrder.Id);
 
         // Assert
-        Assert.Equal(createdProduct.Id, result.Id);
+        Assert.Equal(createdOrder.Id, result.Id);
     }
 
     [Fact]
@@ -124,7 +128,7 @@ public class OrderService_Tests
         var orderService = new OrderService(orderRepository, userService);
 
         // Act
-        var result = orderService.GetOrderById(999); // Use an ID that does not exist
+        var result = orderService.GetOrderById(999); 
 
         // Assert
         Assert.Null(result);

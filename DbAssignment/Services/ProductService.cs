@@ -16,7 +16,6 @@ public class ProductService(ProductRepository productRepository, CategoryService
         var existingProduct = _productRepository.Get(x => x.ProductName == productName);
         if (existingProduct != null)
         {
-            // If a product with the same name already exists, return null
             return null;
         }
 

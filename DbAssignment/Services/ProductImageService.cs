@@ -1,6 +1,4 @@
-﻿
-
-using DbAssignment.Entities;
+﻿using DbAssignment.Entities;
 using DbAssignment.Repositories;
 
 namespace DbAssignment.Services;
@@ -22,8 +20,12 @@ public class ProductImageService
 
         var productEntity = _productService.CreateProduct(productName, price, description, categoryName);
 
-        var productImageEntity = new ProductImageEntity
+        if (productEntity == null)
+        {
+            return null;
+        }
 
+        var productImageEntity = new ProductImageEntity
         {
             ImagePath = imagePath,
             ProductId = productEntity.Id

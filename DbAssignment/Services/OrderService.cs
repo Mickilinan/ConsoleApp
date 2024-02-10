@@ -9,14 +9,14 @@ public class OrderService(OrderRepository orderRepository, UserService userServi
     private readonly OrderRepository _orderRepository = orderRepository;
     private readonly UserService _userService = userService;
 
-    public OrderEntity CreateOrder(string status, DateTime createdAt, DateTime updatedAt, string firstName, string lastName, string email )
+    public OrderEntity CreateOrder(string status, DateTime createdAt, DateTime updatedAt, string firstName, string lastName, string email)
     {
-        var userEntity = _userService.CreateUser(firstName,lastName, email);
-       
+        var userEntity = _userService.GetUserByEmail(email);
+
         if (userEntity == null)
         {
-            return null;
-        }   
+            userEntity = _userService.CreateUser(firstName, lastName, email);
+        }
 
         var orderEntity = new OrderEntity
         {
@@ -29,8 +29,6 @@ public class OrderService(OrderRepository orderRepository, UserService userServi
         orderEntity = _orderRepository.Create(orderEntity);
 
         return orderEntity;
-     
-
     }
 
     public OrderEntity GetOrderById(int id)

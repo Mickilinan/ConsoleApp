@@ -37,6 +37,16 @@ public class ReviewService
 
     }
 
+    public List<ReviewEntity> GetAllReviews()
+    {
+        return _reviewRepository.GetAll().ToList();
+    }
+
+    public ReviewEntity GetReviewById(int id)
+    {
+        return _reviewRepository.Get(x => x.Id == id);
+    }
+
     public void DeleteReview(int Id)
     {
         _reviewRepository.Delete(x => x.Id == Id);

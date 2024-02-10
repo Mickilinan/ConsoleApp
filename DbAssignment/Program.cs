@@ -6,6 +6,7 @@ using DbAssignment.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 var builder = Host.CreateDefaultBuilder().ConfigureServices(services =>
 {
@@ -41,7 +42,14 @@ var builder = Host.CreateDefaultBuilder().ConfigureServices(services =>
 
 
 
-}).Build();
+})
+    .ConfigureLogging(logging =>
+    {
+        logging.ClearProviders();
+        logging.AddConsole();
+        logging.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Error);
+    })
+    .Build();
 
 var userInterface = builder.Services.GetRequiredService<UserInterface>();
 var allLogos = builder.Services.GetRequiredService<AllLogos>();

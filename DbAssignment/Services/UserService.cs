@@ -14,7 +14,6 @@ public class UserService(UserRepository userRepository)
         var existingUser = _userRepository.Get(x => x.FirstName == firstName && x.LastName == lastName && x.Email == email);
         if (existingUser != null)
         {
-            // If a user with the same name already exists, return null
             return null;
         }
 
@@ -33,6 +32,12 @@ public class UserService(UserRepository userRepository)
     public UserEntity GetUserById(int id)
     {
         var userEntity = _userRepository.Get(x => x.Id == id);
+        return userEntity;
+    }
+
+    public UserEntity GetUserByEmail(string email)
+    {
+        var userEntity = _userRepository.Get(x => x.Email == email);
         return userEntity;
     }
 
