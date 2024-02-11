@@ -5,15 +5,10 @@ using System.Linq.Expressions;
 
 namespace DbAssignment.Repositories;
 
-public class OrderItemRepository : BaseRepo<DataContext,OrderItemEntity>
+public class OrderItemRepository(DataContext context) : BaseRepo<DataContext,OrderItemEntity>(context)
 {
 
-    private readonly DataContext _context;  
-    public OrderItemRepository(DataContext context) : base(context)
-    {
-
-        _context = context;
-    }
+    private readonly DataContext _context = context;
 
     public override OrderItemEntity Get(Expression<Func<OrderItemEntity, bool>> expression)
     {

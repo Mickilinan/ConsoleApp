@@ -43,7 +43,6 @@ public class SupplierService_Tests
         supplierService.CreateSupplier(existingSupplierName, "Existing contact info");
 
         // Act
-        // Try to create another category with the same name
         var duplicateSupplierName = "Existing supplier";
         var result = supplierService.CreateSupplier(duplicateSupplierName, "Duplicate contact info");
 
@@ -105,7 +104,7 @@ public class SupplierService_Tests
         // Arrange
         var supplierRepository = new SupplierRepository(_context);
         var supplierService = new SupplierService(supplierRepository);
-        var nonExistingSupplier = new SupplierEntity { Id = 999, SupplierName = "Non-existing supplier" }; // 999 is a non-existing Id
+        var nonExistingSupplier = new SupplierEntity { Id = 999, SupplierName = "Non-existing supplier" }; 
 
         // Act
         var result = supplierService.UpdateSupplier(nonExistingSupplier);
@@ -138,7 +137,7 @@ public class SupplierService_Tests
         var supplierService = new SupplierService(supplierRepository);
 
         // Act
-        var exception = Record.Exception(() => supplierService.DeleteSupplier(999)); // 999 is a non-existing Id
+        var exception = Record.Exception(() => supplierService.DeleteSupplier(999)); 
 
         // Assert
         Assert.Null(exception);

@@ -10,15 +10,15 @@ public class CategoryService(CategoryRepository categoryRepository)
 
     public CategoryEntity CreateCategory(string categoryName)
     {
-        // Check if a category with the same name already exists
+        
         var existingCategory = _categoryRepository.Get(x => x.CategoryName == categoryName);
         if (existingCategory != null)
         {
-            // If a category with the same name already exists, return null
+            
             return existingCategory;
         }
 
-        // If no category with the same name exists, create a new category
+        
         var category = new CategoryEntity { CategoryName = categoryName };
         return _categoryRepository.Create(category);
 

@@ -66,7 +66,7 @@ while (!exit)
     Console.Clear();
     allLogos.MainMenuLogo();
     Console.WriteLine("===Main Menu===");
-    string[] options = { "Manage products", "Manage users", "Manage orders", "Exit" };
+    string[] options = ["Manage products", "Manage users", "Manage orders", "Exit"];
     int choice = userInterface.DisplayMenu(options, allLogos.ProductsLogo);
 
     switch (choice)

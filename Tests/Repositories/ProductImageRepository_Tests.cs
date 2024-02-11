@@ -44,6 +44,7 @@ public class ProductImageRepository_Tests
     [Fact]
     public void Get_ShouldGetAllProductImages()
     {
+        //Arrange
         var productImageRepository = new ProductImageRepository(_context);
         var product = new ProductEntity
         {

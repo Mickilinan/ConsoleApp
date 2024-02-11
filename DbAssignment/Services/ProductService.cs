@@ -12,7 +12,7 @@ public class ProductService(ProductRepository productRepository, CategoryService
     public ProductEntity CreateProduct(string productName, decimal price, string description,string categoryName)
     {
 
-        // Check if a product with the same name already exists
+        
         var existingProduct = _productRepository.Get(x => x.ProductName == productName);
         if (existingProduct != null)
         {

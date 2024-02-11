@@ -64,7 +64,7 @@ public class ReviewService_Tests
         var result = reviewService.GetAllReviews();
 
         // Assert
-        Assert.Equal(3, result.Count());
+        Assert.Equal(3, result.Count);
     }
 
     [Fact]

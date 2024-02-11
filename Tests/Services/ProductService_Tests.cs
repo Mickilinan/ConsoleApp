@@ -50,7 +50,6 @@ public class ProductService_Tests
         productService.CreateProduct("Test Product", 10m, "Test Description", "Test Category");
 
         // Act
-        // Try to create another product with the same name
         var result = productService.CreateProduct("Test Product", 20m, "Another Description", "Another Category");
 
         // Assert
@@ -110,7 +109,7 @@ public class ProductService_Tests
         var productService = new ProductService(productRepository, categoryService);
 
         // Act
-        var result = productService.GetProductById(999); // Use an ID that does not exist
+        var result = productService.GetProductById(999); 
 
         // Assert
         Assert.Null(result);

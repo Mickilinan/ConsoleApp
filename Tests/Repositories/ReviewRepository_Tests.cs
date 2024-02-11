@@ -50,6 +50,7 @@ public class ReviewRepository_Tests
     [Fact]
     public void Get_ShouldGetAllReviews()
     {
+        //Arrange
         var reviewRepository = new ReviewRepository(_context);
         var product = new ProductEntity
         {

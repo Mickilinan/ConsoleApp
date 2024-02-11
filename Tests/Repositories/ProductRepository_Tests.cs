@@ -32,6 +32,7 @@ public class ProductRepository_Tests
     [Fact]
     public void Get_ShouldGetAllProducts()
     {
+        //Arrange
         var productRepository = new ProductRepository(_context);
         var productEntity = new ProductEntity
         {
@@ -99,7 +100,7 @@ public class ProductRepository_Tests
         productRepository.Create(productEntity);
 
         // Act
-        productEntity.Price = 200.0m; // Change a property
+        productEntity.Price = 200.0m; 
         productRepository.Update(x => x.Id == productEntity.Id, productEntity);
         var result = productRepository.Get(x => x.Id == productEntity.Id);
 
@@ -108,7 +109,6 @@ public class ProductRepository_Tests
         Assert.Equal(200.0m, result.Price);
 
     }
-
 
     [Fact]
     public void Delete_ShouldDeleteOneProduct()

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using DbAssignment.Entities;
+﻿using DbAssignment.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace DbAssignment.Contexts;

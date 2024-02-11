@@ -3,10 +3,7 @@ using DbAssignment.Entities;
 
 namespace DbAssignment.Repositories;
 
-public class ManufacturerRepository : BaseRepo<DataContext2, ManufacturerEntity>
+public class ManufacturerRepository(DataContext2 context) : BaseRepo<DataContext2, ManufacturerEntity>(context)
 {
-    public ManufacturerRepository(DataContext2 context) : base(context)
-    {
-    }
 }
 

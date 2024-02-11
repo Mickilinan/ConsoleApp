@@ -1,21 +1,13 @@
-﻿
-
-using DbAssignment.Entities;
+﻿using DbAssignment.Entities;
 using DbAssignment.Repositories;
 
 namespace DbAssignment.Services;
 
-public class ProductAttributeService
+public class ProductAttributeService(ProductAttributeRepository productAttributeRepository, ProductService productService)
 {
 
-    private readonly ProductAttributeRepository _productAttributeRepository;
-    private readonly ProductService _productService;
-
-    public ProductAttributeService(ProductAttributeRepository productAttributeRepository, ProductService productService)
-    {
-        _productAttributeRepository = productAttributeRepository;
-        _productService = productService;
-    }
+    private readonly ProductAttributeRepository _productAttributeRepository = productAttributeRepository;
+    private readonly ProductService _productService = productService;
 
     public ProductAttributeEntity CreateProductAttribute(string productName, string attributeName, decimal price, string description, string categoryName)
     {

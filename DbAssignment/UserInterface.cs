@@ -4,23 +4,14 @@ using DbAssignment.Services;
 
 namespace DbAssignment;
 
-public class UserInterface
+public class UserInterface(ProductService productService, UserService userService, OrderService orderService, OrderItemService orderItemService, AllLogos allLogos)
 {
 
-    private readonly ProductService _productService;
-    private readonly UserService _userService;
-    private readonly OrderService _orderService;  
-    private readonly OrderItemService _orderItemService;
-    private readonly AllLogos _allLogos;
-
-    public UserInterface(ProductService productService, UserService userService, OrderService orderService, OrderItemService orderItemService, AllLogos allLogos)
-    {
-        _productService = productService;
-        _userService = userService;
-        _orderService = orderService;
-        _orderItemService = orderItemService;
-        _allLogos = allLogos;
-    }
+    private readonly ProductService _productService = productService;
+    private readonly UserService _userService = userService;
+    private readonly OrderService _orderService = orderService;  
+    private readonly OrderItemService _orderItemService = orderItemService;
+    private readonly AllLogos _allLogos = allLogos;
 
     public int DisplayMenu(string[] options, Action displayLogo)
     {
@@ -77,7 +68,7 @@ public class UserInterface
             Console.Clear();
             _allLogos.ProductsLogo(); 
             Console.WriteLine("===Manage Products Menu===");
-            string[] options = { "Create Product", "View Products", "Update Product", "Delete Product", "Go back" };
+            string[] options = ["Create Product", "View Products", "Update Product", "Delete Product", "Go back"];
             int choice = DisplayMenu(options, _allLogos.ProductsLogo);
 
             switch (choice)
@@ -112,7 +103,7 @@ public class UserInterface
         {
             Console.Clear();
             _allLogos.UsersLogo();
-            string[] options = { "Create User", "View Users", "Update user", "Delete user", "Go back" };
+            string[] options = ["Create User", "View Users", "Update user", "Delete user", "Go back"];
             int choice = DisplayMenu(options, _allLogos.UsersLogo);
 
             switch (choice)
@@ -148,7 +139,7 @@ public class UserInterface
             Console.Clear();
             _allLogos.OrdersLogo(); // Display the logo here
             Console.WriteLine("===Manage Orders Menu===");
-            string[] options = { "Create order", "View orders", "Update order", "Delete order", "Go back" };
+            string[] options = ["Create order", "View orders", "Update order", "Delete order", "Go back"];
             int choice = DisplayMenu(options, _allLogos.OrdersLogo);
 
             switch (choice)
@@ -379,7 +370,7 @@ public class UserInterface
 
     public void CreateOrder_UI()
     {
-        // Code to create an order
+        
         Console.Write("Enter the status of the order: ");
         string status = Console.ReadLine();
 
@@ -403,14 +394,12 @@ public class UserInterface
             Console.Write("Enter the product name for item " + (i + 1) + ": ");
             string productName = Console.ReadLine();
 
-            // Code to look up the product by name and get its ID
-            // int productId = ...
+            
 
             Console.Write("Enter the quantity for item " + (i + 1) + ": ");
             int quantity = int.Parse(Console.ReadLine());
 
-            // Code to create an order item with the specified product ID and quantity
-            // and add it to the order
+           
         }
     }
 
@@ -437,7 +426,7 @@ public class UserInterface
 
     public void UpdateOrder_UI()
     {
-        // Code to get the order to update
+        
 
         Console.Write("How many items would you like to update in the order? ");
         int itemCount = int.Parse(Console.ReadLine());
@@ -450,14 +439,12 @@ public class UserInterface
             Console.Write("Enter the new product name for item " + (i + 1) + ": ");
             string newProductName = Console.ReadLine();
 
-            // Code to look up the product by name and get its ID
-            // int newProductId = ...
+            
 
             Console.Write("Enter the new quantity for item " + (i + 1) + ": ");
             int newQuantity = int.Parse(Console.ReadLine());
 
-            // Code to update the order item with the specified ID
-            // with the new product ID and quantity
+            
         }
     }
 

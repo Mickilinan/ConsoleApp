@@ -3,7 +3,7 @@ using DbAssignment.Entities;
 using DbAssignment.Repositories;
 using DbAssignment.Services;
 using Microsoft.EntityFrameworkCore;
-using System;
+
 
 namespace Tests.Services;
 
@@ -159,12 +159,12 @@ public class ProductAttributeService_Tests
         string description = "Test description";
         string categoryName = "Test category";
 
-        var createdManufacturer = productAttributeService.CreateProductAttribute(productName, attributeName, price, description, categoryName);
+        var createdProductAttribute = productAttributeService.CreateProductAttribute(productName, attributeName, price, description, categoryName);
 
-        createdManufacturer.AttributeName = "Updated attribute name";
+        createdProductAttribute.AttributeName = "Updated attribute name";
 
         // Act
-        var result = productAttributeService.UpdateProductAttribute(createdManufacturer);
+        var result = productAttributeService.UpdateProductAttribute(createdProductAttribute);
 
         // Assert
         Assert.Equal("Updated attribute name", result.AttributeName);

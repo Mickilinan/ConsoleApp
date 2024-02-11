@@ -3,9 +3,6 @@ using DbAssignment.Entities;
 
 namespace DbAssignment.Repositories;
 
-public class ProductImageRepository : BaseRepo<DataContext2, ProductImageEntity>
+public class ProductImageRepository(DataContext2 context) : BaseRepo<DataContext2, ProductImageEntity>(context)
 {
-    public ProductImageRepository(DataContext2 context) : base(context)
-    {
-    }
 }

@@ -4,13 +4,6 @@ using DbAssignment.Entities;
 
 namespace DbAssignment.Repositories;
 
-public class ReviewRepository : BaseRepo<DataContext2, ReviewEntity>
+public class ReviewRepository(DataContext2 context) : BaseRepo<DataContext2, ReviewEntity>(context)
 {
-    
-    public ReviewRepository(DataContext2 context) : base(context)
-    {
-
-        
-    }
-
 }

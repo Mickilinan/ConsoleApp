@@ -10,7 +10,7 @@ public class UserService(UserRepository userRepository)
 
     public UserEntity CreateUser(string firstName, string lastName, string email)
     {
-        // Check if a user with the same name already exists
+        
         var existingUser = _userRepository.Get(x => x.FirstName == firstName && x.LastName == lastName && x.Email == email);
         if (existingUser != null)
         {

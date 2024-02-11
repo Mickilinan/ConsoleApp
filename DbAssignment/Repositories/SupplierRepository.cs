@@ -3,9 +3,6 @@ using DbAssignment.Entities;
 
 namespace DbAssignment.Repositories;
 
-public class SupplierRepository : BaseRepo<DataContext2, SupplierEntity>
+public class SupplierRepository(DataContext2 context) : BaseRepo<DataContext2, SupplierEntity>(context)
 {
-    public SupplierRepository(DataContext2 context) : base(context)
-    {
-    }
 }

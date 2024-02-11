@@ -89,7 +89,6 @@ public class UserRepository_Tests
 
     }
 
-
     [Fact]
     public void Delete_ShouldDeleteOneUser()
     {

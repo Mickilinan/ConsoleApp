@@ -3,17 +3,11 @@ using DbAssignment.Repositories;
 
 namespace DbAssignment.Services;
 
-public class ProductImageService
+public class ProductImageService(ProductImageRepository productImageRepository, ProductService productService)
 {
 
-    private readonly ProductImageRepository _productImageRepository;
-    private readonly ProductService _productService;
-
-    public ProductImageService(ProductImageRepository productImageRepository, ProductService productService)
-    {
-        _productImageRepository = productImageRepository;
-        _productService = productService;
-    }
+    private readonly ProductImageRepository _productImageRepository = productImageRepository;
+    private readonly ProductService _productService = productService;
 
     public ProductImageEntity CreateProductImage(string productName, string imagePath, decimal price, string description, string categoryName)
     {

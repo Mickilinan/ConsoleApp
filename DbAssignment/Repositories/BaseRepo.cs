@@ -1,20 +1,12 @@
-﻿using DbAssignment.Contexts;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace DbAssignment.Repositories;
 
-public class BaseRepo<TContext, TEntity> where TContext : DbContext where TEntity : class
+public class BaseRepo<TContext, TEntity>(TContext context) where TContext : DbContext where TEntity : class
 {
 
-
-    private readonly TContext _context;
-
-    public BaseRepo(TContext context)
-    {
-        _context = context;
-    }
-
+    private readonly TContext _context = context;
 
     public virtual TEntity Create(TEntity entity)
     {
@@ -43,14 +35,14 @@ public class BaseRepo<TContext, TEntity> where TContext : DbContext where TEntit
 
     public virtual TEntity Update(Expression<Func<TEntity, bool>> expression, TEntity entity)
     {
-        // Check if entity is null
+        
         if (entity == null)
         {
-            // If entity is null, return null
+            
             return null;
         }
 
-        // If entity is not null, update the entity
+        
         var existingEntity = _context.Set<TEntity>().SingleOrDefault(expression);
         if (existingEntity != null)
         {

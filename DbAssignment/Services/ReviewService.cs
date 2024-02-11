@@ -4,25 +4,15 @@ using DbAssignment.Repositories;
 
 namespace DbAssignment.Services;
 
-public class ReviewService
+public class ReviewService(ReviewRepository reviewRepository, BaseRepo<DataContext, ProductEntity> productRepository, BaseRepo<DataContext, UserEntity> userRepository)
 {
 
-    private readonly ReviewRepository _reviewRepository;
-    private readonly BaseRepo<DataContext, ProductEntity> _productRepository;
-    private readonly BaseRepo<DataContext, UserEntity> _userRepository;
-
-    public ReviewService(ReviewRepository reviewRepository, BaseRepo<DataContext, ProductEntity> productRepository, BaseRepo<DataContext, UserEntity> userRepository)
-    {
-        _reviewRepository = reviewRepository;
-        _productRepository = productRepository;
-        _userRepository = userRepository;
-    }
-
+    private readonly ReviewRepository _reviewRepository = reviewRepository;
+    private readonly BaseRepo<DataContext, ProductEntity> _productRepository = productRepository;
+    private readonly BaseRepo<DataContext, UserEntity> _userRepository = userRepository;
 
     public ReviewEntity CreateReview(string comment, int userId, int productId)
     {
-
-
 
         var reviewEntity = new ReviewEntity
         {
@@ -55,16 +45,16 @@ public class ReviewService
 
     public ReviewEntity GetReviewWithProductAndUser(int reviewId)
     {
-        // Get a review
+       
         var review = _reviewRepository.Get(x => x.Id == reviewId);
 
-        // Get the related product
+        
         var product = _productRepository.Get(x => x.Id == review.ProductId);
 
-        // Get the related user
+        
         var user = _userRepository.Get(x => x.Id == review.UserId);
 
-        // Attach the product and user to the review
+        
         review.Product = product;
         review.User = user;
 

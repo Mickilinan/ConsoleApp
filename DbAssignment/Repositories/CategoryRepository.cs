@@ -3,12 +3,7 @@ using DbAssignment.Entities;
 
 namespace DbAssignment.Repositories;
 
-public class CategoryRepository : BaseRepo<DataContext,CategoryEntity>
+public class CategoryRepository(DataContext context) : BaseRepo<DataContext,CategoryEntity>(context)
 {
-    public CategoryRepository(DataContext context) : base(context)
-    {
-    }
-
-
 }
 

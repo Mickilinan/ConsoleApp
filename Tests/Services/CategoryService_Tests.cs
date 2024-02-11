@@ -36,12 +36,11 @@ public class CategoryService_Tests
         var categoryRepository = new CategoryRepository(_context);
         var categoryService = new CategoryService(categoryRepository);
 
-        // Create a category
+        
         var existingCategoryName = "Existing category";
         var existingCategory = categoryService.CreateCategory(existingCategoryName);
 
         // Act
-        // Try to create another category with the same name
         var duplicateCategoryName = "Existing category";
         var result = categoryService.CreateCategory(duplicateCategoryName);
 
@@ -50,7 +49,6 @@ public class CategoryService_Tests
         Assert.Equal(existingCategory.Id, result.Id);
         Assert.Equal(existingCategory.CategoryName, result.CategoryName);
     }
-
 
     [Fact]
     public void GetCategoryByCategoryName_ShouldReturnCategory_WhenCategoryExists()
@@ -106,7 +104,7 @@ public class CategoryService_Tests
         // Arrange
         var categoryRepository = new CategoryRepository(_context);
         var categoryService = new CategoryService(categoryRepository);
-        var nonExistingCategory = new CategoryEntity { Id = 999, CategoryName = "Non-existing category" }; // 999 is a non-existing Id
+        var nonExistingCategory = new CategoryEntity { Id = 999, CategoryName = "Non-existing category" }; 
 
         // Act
         var result = categoryService.UpdateCategory(nonExistingCategory);
@@ -139,7 +137,7 @@ public class CategoryService_Tests
         var categoryService = new CategoryService(categoryRepository);
 
         // Act
-        var exception = Record.Exception(() => categoryService.DeleteCategory(999)); // 999 is a non-existing Id
+        var exception = Record.Exception(() => categoryService.DeleteCategory(999)); 
 
         // Assert
         Assert.Null(exception);

@@ -12,11 +12,9 @@ public class OrderItemService_Tests
            .UseInMemoryDatabase($"{Guid.NewGuid()}")
            .Options);
 
-   
-
-        private OrderItemService _orderItemService;
-        private OrderService _orderService;
-        private ProductService _productService;
+        private readonly OrderItemService _orderItemService;
+        private readonly OrderService _orderService;
+        private readonly ProductService _productService;
 
         public OrderItemService_Tests()
         {
@@ -74,8 +72,8 @@ public class OrderItemService_Tests
     {
         // Arrange
         int quantity = 1;
-        int orderId = 999; // This should be an ID of a non-existing order
-        int productId = 1; // This should be an ID of an existing product
+        int orderId = 999; 
+        int productId = 1; 
 
         // Act
         var result = _orderItemService.CreateOrderItem(quantity, orderId, productId);
@@ -88,7 +86,7 @@ public class OrderItemService_Tests
     public void GetOrderItemById_ShouldReturnNull_WhenOrderItemIdDoesNotExist()
     {
         // Arrange
-        int id = 999; // This should be an ID of a non-existing order item
+        int id = 999; 
 
         // Act
         var result = _orderItemService.GetOrderItemById(id);
@@ -117,7 +115,7 @@ public class OrderItemService_Tests
     public void GetAllOrderItemsByOrderId_ShouldReturnEmpty_WhenOrderIdDoesNotExist()
     {
         // Arrange
-        int orderId = 999; // This should be an ID of a non-existing order
+        int orderId = 999; 
 
         // Act
         var result = _orderItemService.GetOrderItemsByOrderId(orderId);
@@ -165,10 +163,10 @@ public class OrderItemService_Tests
         // Arrange
         var orderItem = new OrderItemEntity
         {
-            Id = 999, // This should be an ID of a non-existing order item
+            Id = 999, 
             Quantity = 2,
-            OrderId = 1, // This should be an ID of an existing order
-            ProductId = 1 // This should be an ID of an existing product
+            OrderId = 1, 
+            ProductId = 1 
         };
 
         // Act
@@ -199,7 +197,7 @@ public class OrderItemService_Tests
     public void DeleteOrderItem_ShouldNotThrowException_WhenOrderItemIdDoesNotExist()
     {
         // Arrange
-        int id = 999; // This should be an ID of a non-existing order item
+        int id = 999; 
 
         // Act
         Exception ex = Record.Exception(() => _orderItemService.DeleteOrderItem(id));

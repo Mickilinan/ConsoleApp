@@ -3,24 +3,19 @@ using DbAssignment.Repositories;
 
 namespace DbAssignment.Services;
 
-public class SupplierService
+public class SupplierService(SupplierRepository supplierRepository)
 {
 
-    private readonly SupplierRepository _supplierRepository;
-
-    public SupplierService(SupplierRepository supplierRepository)
-    {
-        _supplierRepository = supplierRepository;
-    }
+    private readonly SupplierRepository _supplierRepository = supplierRepository;
 
     public SupplierEntity CreateSupplier(string supplierName, string contactInfo)
     {
 
-        // Check if a supplier with the same name already exists
+        
         var existingSupplier = _supplierRepository.Get(x => x.SupplierName == supplierName);
         if (existingSupplier != null)
         {
-            // If a supplier with the same name already exists, return null
+            
             return null;
         }
 

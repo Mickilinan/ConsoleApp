@@ -40,6 +40,7 @@ public class OrderRepository_Tests
     [Fact]
     public void Get_ShouldGetAllOrders()
     {
+        //Arrange
         var orderRepository = new OrderRepository(_context);
         var userEntity = new UserEntity
         {
@@ -111,7 +112,7 @@ public class OrderRepository_Tests
         
 
         // Act
-        orderEntity.Status = "Updated status"; // Change a property
+        orderEntity.Status = "Updated status"; 
         orderRepository.Update(x => x.Id == orderEntity.Id, orderEntity);
         var result = orderRepository.Get(x => x.Id == orderEntity.Id);
 
@@ -120,7 +121,6 @@ public class OrderRepository_Tests
         Assert.Equal("Updated status", result.Status);
 
     }
-
 
     [Fact]
     public void Delete_ShouldDeleteOneOrder()

@@ -49,6 +49,7 @@ public class OrderItemRepository_Tests
     [Fact]
     public void Get_ShouldGetAllOrderItems()
     {
+        //Arrange
         var orderItemRepository = new OrderItemRepository(_context);
         var product = new ProductEntity
         {
@@ -156,7 +157,6 @@ public class OrderItemRepository_Tests
 
 
     }
-
 
     [Fact]
     public void Delete_ShouldDeleteOneOrderItem()

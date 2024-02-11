@@ -90,7 +90,6 @@ public class CategoryRepository_Tests
 
     }
 
-
     [Fact]
     public void Delete_ShouldDeleteOneCategory()
     {

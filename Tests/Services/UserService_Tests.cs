@@ -113,7 +113,7 @@ public class UserService_Tests
         // Arrange
         var userRepository = new UserRepository(_context);
         var userService = new UserService(userRepository);
-        var nonExistingUser = new UserEntity { Id = 999, Email = "Non-existing user" }; // 999 is a non-existing Id
+        var nonExistingUser = new UserEntity { Id = 999, Email = "Non-existing user" }; 
 
         // Act
         var result = userService.UpdateUser(nonExistingUser);
@@ -145,7 +145,7 @@ public class UserService_Tests
         var userService = new UserService(userRepository);
 
         // Act
-        var exception = Record.Exception(() => userService.DeleteUser(999)); // 999 is a non-existing Id
+        var exception = Record.Exception(() => userService.DeleteUser(999)); 
 
         // Assert
         Assert.Null(exception);

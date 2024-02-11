@@ -42,6 +42,7 @@ public class ManufacturerRepository_Tests
     [Fact]
     public void Get_ShouldGetAllManufacturers()
     {
+        //Arrange
         var manufacturerRepository = new ManufacturerRepository(_context);
         var product = new ProductEntity
         {
@@ -130,7 +131,6 @@ public class ManufacturerRepository_Tests
 
 
     }
-
 
     [Fact]
     public void Delete_ShouldDeleteOneManufacturer()

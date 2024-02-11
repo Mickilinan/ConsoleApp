@@ -45,6 +45,7 @@ new(new DbContextOptionsBuilder<DataContext2>()
     [Fact]
     public void Get_ShouldGetAllProductAttributes()
     {
+        //Arrange
         var productAttributeRepository = new ProductAttributeRepository(_context);
         var product = new ProductEntity
         {
@@ -133,7 +134,6 @@ new(new DbContextOptionsBuilder<DataContext2>()
 
 
     }
-
 
     [Fact]
     public void Delete_ShouldDeleteOneProductAttribute()
