@@ -1,4 +1,4 @@
-#Database assignment
+# Database assignment
 
 This application, built with C# and .NET, is designed to interact with a Microsoft SQL database. 
 The project uses Entity Framework Core to manage the database connection and operations, implementing both Code-First and Database-First approaches. 
